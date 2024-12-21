@@ -48,5 +48,7 @@ export const addUser = (newUser: User) => {
     users.push(newUser);
     return newUser;
 };
-  
-export const getUsers = () => users;
+
+export const getUsers = () => [...users]; // Return a new array each time
+
+export const getUsersCount = () => users.length;

@@ -1,6 +1,6 @@
 // import { users } from '@/utils/db';
 import { v4 as uuidv4 } from 'uuid';
-import { addUser, getUsers } from '@/utils/db';
+import { addUser, getUsers, getUsersCount } from '@/utils/db';
 // export const users = [
 //     { 
 //         id: 1, 
@@ -54,7 +54,7 @@ export const POST = async (request: Request) => {
     const user = await request.json();
     const newUUID = uuidv4();
     const newUser = {
-        id: getUsers().length + 1,
+        id: getUsersCount() + 1,
         name: user.name,
         email: user.email,
         img: user.img,
