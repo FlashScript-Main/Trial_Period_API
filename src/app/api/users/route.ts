@@ -1,6 +1,6 @@
 import { users } from '@/utils/db';
 import { v4 as uuidv4 } from 'uuid';
-import * as fs from "fs";
+import * as fs from "fs/promises";
 import { NextResponse } from 'next/server';
 import path from 'path';
 // const users = [
@@ -76,7 +76,7 @@ export async function POST(request: Request) {
         const updatedData = JSON.stringify(users, null, 2);
         const filePath = path.join(process.cwd(), 'src', 'utils', 'db.ts');
 
-        fs.writeFileSync(
+        await fs.writeFile(
             filePath,
             `export const users = ${updatedData};`,
             'utf-8'
