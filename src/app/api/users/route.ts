@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
 
-export async function GET(request: Request) {
+export async function GET() {
   // Assuming the image is named 'example.jpg' in the public folder
   const imagePath = path.join(process.cwd(), 'public', 'flash-script.jpeg');
 
