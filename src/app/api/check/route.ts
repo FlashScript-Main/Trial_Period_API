@@ -1,4 +1,3 @@
-/*
 import { getUsers } from "@/utils/db";
 // import { NextResponse } from "next/server"
 
@@ -12,8 +11,8 @@ export const GET = async () => {
         { status: 200 }
     );
 }
-*/
 
+/*
 import useUserStore from '@/store/userStore';
 
 export const GET = async () => {
@@ -24,3 +23,4 @@ export const GET = async () => {
         { status: 200 }
     );
 }
+*/
