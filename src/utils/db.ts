@@ -1,4 +1,12 @@
-export const users = [
+type User = {
+    id: number;
+    name: string;
+    email: string;
+    img: string;
+    token: string;
+}
+
+const users = [
     { 
         id: 1, 
         name: "Alice", 
@@ -34,4 +42,11 @@ export const users = [
         img: "https://images.unsplash.com/photo-1610806886287-d7f1c6f7d4f4?q=80&w=1920&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", 
         token: "e4f6d5c0-a0a9-4a1f-b8d9-f2f3a8f0f4d4" 
     },
-]
+];
+
+export const addUser = (newUser: User) => {
+    users.push(newUser);
+    return newUser;
+};
+  
+export const getUsers = () => users;

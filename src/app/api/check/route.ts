@@ -1,6 +1,7 @@
+import { getUsers } from "@/utils/db";
 import { NextResponse } from "next/server"
-import { users } from "../users/route"
 
 export const GET = async () => {
+    const users = getUsers();
     return NextResponse.json(users)
 }
