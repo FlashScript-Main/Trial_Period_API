@@ -1,3 +1,4 @@
+/*
 // import { users } from '@/utils/db';
 import { v4 as uuidv4 } from 'uuid';
 import { addUser, getUsers, getUsersCount } from '@/utils/db';
@@ -70,7 +71,42 @@ export const POST = async (request: Request) => {
         status: 201,
     });
 }
+*/
 
+import { v4 as uuidv4 } from 'uuid';
+import useUserStore from '@/store/userStore';
+
+export const GET = async () => {
+    const users = useUserStore.getState().getUsers();
+
+    return Response.json(
+        { users },
+        { status: 200 }
+    );
+}
+
+export const POST = async (request: Request) => {
+    const user = await request.json();
+    const newUUID = uuidv4();
+    const { getUsersCount, addUser } = useUserStore.getState();
+
+    const newUser = {
+        id: getUsersCount() + 1,
+        name: user.name,
+        email: user.email,
+        img: user.img,
+        token: newUUID,
+    }
+
+    addUser(newUser);
+
+    return new Response(JSON.stringify(newUser), {
+        headers: {
+            "Content-Type": "application/json",
+        },
+        status: 201,
+    });
+}
 
 /*
 export const GET = async () => {
