@@ -1,8 +1,8 @@
 import { users } from '@/utils/db';
 import { v4 as uuidv4 } from 'uuid';
-import * as fs from "fs/promises";
+import * as fs from "fs";
 import { NextResponse } from 'next/server';
-import path from 'path';
+
 // const users = [
 //     { 
 //         id: 1, 
@@ -50,48 +50,33 @@ export const GET = async () => {
     );
 }
 
-export async function POST(request: Request) {
-    try {
-        const user = await request.json();
+export const POST = async (request: Request) => {
 
-        if (!user.name || !user.email || !user.img) {
-            return NextResponse.json(
-                { error: "Please provide all the required fields" },
-                { status: 400 }
-            );
-        }
+    const user = await request.json();
 
-        const newUUID = uuidv4();
-        
-        const newUser = {
-            id: users.length + 1,
-            name: user.name,
-            email: user.email,
-            img: user.img,
-            token: newUUID,
-        };
-
-        users.push(newUser);
-
-        const updatedData = JSON.stringify(users, null, 2);
-        const filePath = path.join(process.cwd(), 'src', 'utils', 'db.ts');
-
-        await fs.writeFile(
-            filePath,
-            `export const users = ${updatedData};`,
-            'utf-8'
-        );
-
-        return NextResponse.json(
-            { success: "New User Successfully Created" },
-            { status: 201 }
-        );
-    } catch (error) {
-        console.error('Error creating user:', error);
-        return NextResponse.json(
-            { error: "An error occurred while creating the user" },
-            { status: 500 }
-        );
+    const newUUID = uuidv4();
+    
+    const newUser = {
+        id: users.length + 1,
+        name: user.name,
+        email: user.email,
+        img: user.img,
+        token: newUUID,
     }
-}
 
+    users.push(newUser);
+
+    const updatedUsersArray = users;
+
+    const updatedData = JSON.stringify(updatedUsersArray, null, 2);
+
+    fs.writeFileSync(
+        "./src/utils/db.ts",
+        `export const users = ${updatedData};`,
+        { encoding: "utf-8" }
+    );
+
+    return NextResponse.json(
+        { success: "New User Successfully Created" }
+    );
+}
