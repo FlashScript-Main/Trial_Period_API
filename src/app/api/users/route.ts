@@ -1,3 +1,4 @@
+/*
 // /api/users/route.ts
 import { getUsers, addUser } from '@/lib/db';
 
@@ -24,6 +25,8 @@ export const POST = async (request: Request) => {
         status: 201,
     });
 }
+*/
+
 /*
 import { v4 as uuidv4 } from 'uuid';
 
@@ -93,7 +96,6 @@ export const POST = async (request: Request) => {
     });
 }
 */
-/*
 import { v4 as uuidv4 } from 'uuid';
 import useUserStore from '@/store/userStore';
 
@@ -128,7 +130,6 @@ export const POST = async (request: Request) => {
         status: 201,
     });
 }
-*/
 
 /*
 export const GET = async () => {
