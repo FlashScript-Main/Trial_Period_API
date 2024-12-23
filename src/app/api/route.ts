@@ -1,3 +1,4 @@
+import { categories } from '@/lib/db';
 import { v4 as uuidv4 } from 'uuid';
 
 const users = [
@@ -39,7 +40,7 @@ const users = [
 ]
 
 export const GET = async () => {
-    return Response.json(users);
+    return Response.json(categories);
 }
 
 export const POST = async (request: Request) => {
